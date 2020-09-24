@@ -42,7 +42,7 @@ export default {
       cmd.get('adb devices', (err, data, stderr) => {
         if (err) {
           this.showHelp = true
-          return this.$message.info(err || '未安装ADB')
+          return this.$message.info(err || '未安装ADB，请根据教程安装ADB')
         }
 
         let devices = data.split(/\n/g).filter(x => x)
