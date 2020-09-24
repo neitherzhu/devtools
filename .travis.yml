@@ -1,8 +1,9 @@
-osx_image: xcode8.3
+osx_image: xcode12u
 sudo: required
 dist: trusty
 language: c
-matrix:
+os: 'osx',
+jobs:
   include:
   - os: osx
   - os: linux
