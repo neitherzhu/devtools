@@ -10,7 +10,7 @@ const MinifyPlugin = require("babel-minify-webpack-plugin")
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 /**
  * List of node_modules to include in webpack bundle
@@ -45,7 +45,14 @@ let rendererConfig = {
       },
       {
         test: /\.less$/,
-        use: ['vue-style-loader', 'css-loader', 'less-loader']
+        use: ['vue-style-loader', 'css-loader', { 
+          loader: 'less-loader',
+          options: {
+            lessOptions: {
+              javascriptEnabled: true,
+            }
+          }
+        }]
       },
       {
         test: /\.css$/,
@@ -55,11 +62,11 @@ let rendererConfig = {
         test: /\.html$/,
         use: 'vue-html-loader'
       },
-      {
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
-      },
+      // {
+      //   test: /\.js|\.vue$/,
+      //   use: 'babel-loader',
+      //   exclude: /node_modules/
+      // },
       {
         test: /\.node$/,
         use: 'node-loader'

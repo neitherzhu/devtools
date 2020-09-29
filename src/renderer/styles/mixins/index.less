@@ -1,0 +1,71 @@
+.mploop( @count )when( @count <= 30 ){
+  .p@{count} {
+    padding: ( 1px * @count );
+  }
+
+  .pt@{count} {
+    padding-top: ( 1px * @count );
+  }
+
+  .pr@{count} {
+    padding-right: ( 1px * @count );
+  }
+  
+  .pb@{count} {
+    padding-bottom: ( 1px * @count );
+  }
+  
+  .pl@{count} {
+    padding-left: ( 1px * @count );
+  }
+  
+  .plr@{count} {
+    padding-left: ( 1px * @count );
+    padding-right: ( 1px * @count );
+  }
+
+  .ptb@{count} {
+    padding-top: ( 1px * @count );
+    padding-bottom: ( 1px * @count );
+  }
+
+  .m@{count} {
+    margin: ( 1px * @count );
+  }
+
+  .mt@{count} {
+    margin-top: ( 1px * @count );
+  }
+
+  .mr@{count} {
+    margin-right: ( 1px * @count );
+  }
+  
+  .mb@{count} {
+    margin-bottom: ( 1px * @count );
+  }
+  
+  .ml@{count} {
+    margin-left: ( 1px * @count );
+  }
+
+  .mlr@{count} {
+    margin-left: ( 1px * @count );
+    margin-right: ( 1px * @count );
+  }
+
+  .mtb@{count} {
+    margin-top: ( 1px * @count );
+    margin-bottom: ( 1px * @count );
+  }
+  
+  .mploop((@count + 5));
+}
+
+.fsloop(@fs)when(@fs <= 30) {
+  .f@{fs} {
+    font-size: ( 1px * @fs );
+  }
+
+  .fsloop((@fs + 2));
+}
