@@ -42,9 +42,12 @@ export default {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
       form: {
-        domain: 'http://baas.uban360.net:21006',
-        username: 'zhuwei',
-        password: '1234567'
+        // domain: 'http://baas.uban360.net:21006',
+        // username: 'zhuwei',
+        // password: '1234567'
+        domain: '',
+        username: '',
+        password: ''
       },
       rules: {
         domain: [
