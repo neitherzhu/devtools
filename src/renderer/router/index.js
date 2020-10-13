@@ -38,6 +38,11 @@ export default new Router({
       ]
     },
     {
+      path: '/editor',
+      name: 'editor-page',
+      component: require('@/pages/EditorPage/App.vue').default
+    },
+    {
       path: '*',
       redirect: '/login'
     }

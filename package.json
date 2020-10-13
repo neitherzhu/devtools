@@ -122,6 +122,7 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.1",
     "mini-css-extract-plugin": "0.4.0",
+    "monaco-editor-webpack-plugin": "^2.0.0",
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
     "style-loader": "^0.21.0",

@@ -50,6 +50,7 @@ export default {
     handleCardClick (x) {
       // todo 打开项目
       console.log(x)
+      // this.$router.push({ name: 'editor-page' })
     }
   }
 }

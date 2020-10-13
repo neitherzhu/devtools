@@ -46,6 +46,10 @@ export const copyTemplate = ({ type, destPath, srcDir, srcPath }) => {
         .slice(-1)[0]
         .split('.')[0]
 
+      if (!name) {
+        return reject(new Error('项目模板不存在'))
+      }
+
       srcPath = path.join(APP_DATA_PATH, name)
 
       if (srcDir) {
@@ -57,10 +61,16 @@ export const copyTemplate = ({ type, destPath, srcDir, srcPath }) => {
 
     fs.copy(srcPath, destPath).then(err => {
       if (err) {
-        return reject(err)
+        return reject(new Error(err))
       }
 
-      resolve()
+      fs.remove(path.join(destPath, '.git'), e => {
+        if (e) {
+          return reject(new Error(e))
+        }
+
+        resolve()
+      })
     })
   })
 }
@@ -146,6 +156,28 @@ export const replaceInFile = (filePath, from, to) => {
       fs.writeFile(filePath, fileStr, 'utf8').then(() => {
         resolve()
       })
+    })
+  })
+}
+
+/**
+ * 检测连接的设备列表
+ */
+export const getDeviceList = () => {
+  return new Promise((resolve, reject) => {
+    cmd.get('adb devices', (err, data, stderr) => {
+      if (err) {
+        return reject(new Error(err || '未安装ADB，请根据教程安装ADB'))
+      }
+
+      let devices = data.split(/\n/g).filter(x => x)
+      devices.shift()
+
+      if (!devices.length) {
+        return reject(new Error('未检测到设备，请通过USB连接设备后重试'))
+      } else {
+        resolve(devices)
+      }
     })
   })
 }

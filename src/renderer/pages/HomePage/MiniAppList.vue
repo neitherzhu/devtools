@@ -45,6 +45,7 @@ export default {
         this.$router.push({ name: 'card-list', params: { id } })
       } else {
         // todo 打开项目
+        // this.$router.push({ name: 'editor-page' })
       }
     }
   }

@@ -70,6 +70,8 @@ export default {
               name: 'mp-list',
               params: { type: NORMAL_MINI_APP_TYPE }
             })
+          }).catch(e => {
+            this.$message.error(e.message || '登录服务报错，请稍后再试')
           })
         } else {
           return false

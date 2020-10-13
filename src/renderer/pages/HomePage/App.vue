@@ -7,9 +7,14 @@
         :active="type"
         @click="handleMenuClick"
       />
-      <a-tooltip placement="right" title="退出">
-        <a-icon type="logout" class="logout" @click="handleLogout" />
-      </a-tooltip>
+      <div class="icon-actions p10">
+        <a-tooltip placement="top" title="真机调试">
+          <a-icon type="android" class="ml10" @click="handleRemoteInspect" />
+        </a-tooltip>
+        <a-tooltip placement="top" title="退出">
+          <a-icon type="logout" class="ml10" @click="handleLogout" />
+        </a-tooltip>
+      </div>
     </div>
     <div class="oa height-100 flex1">
       <router-view></router-view>
@@ -21,7 +26,7 @@
 import { mapMutations, mapActions } from 'vuex'
 import { projectDB, cardDB } from '@/db'
 import CMenu from '@/components/Menu'
-import { checkAllTemplate } from '@/utils'
+import { checkAllTemplate, getDeviceList } from '@/utils'
 import {
   NORMAL_MINI_APP_TYPE,
   CARD_MINI_APP_TYPE,
@@ -74,6 +79,23 @@ export default {
     },
     handleLogout () {
       this.$router.push({ name: 'login-page' })
+    },
+    handleRemoteInspect () {
+      getDeviceList()
+        .then(devices => {
+          const inspectPage =
+            process.env.NODE_ENV !== 'production'
+              ? 'http://127.0.0.1:9080/inspect.html'
+              : `${__dirname}/inspect.html`
+          if (!this.inspectWindow || this.inspectWindow.closed) {
+            this.inspectWindow = window.open(inspectPage)
+          } else {
+            this.inspectWindow.focus()
+          }
+        })
+        .catch(e => {
+          this.$message.info(e.message)
+        })
     }
   }
 }
@@ -91,10 +113,12 @@ export default {
     background: @background-color;
     border-right: 1px solid @border-color-base;
 
-    .logout {
+    .icon-actions {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: right;
     }
   }
 }

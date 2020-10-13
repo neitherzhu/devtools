@@ -199,6 +199,8 @@ export default {
 </script>
 
 <style lang="less">
+@import url('@/styles/index.less');
+
 .inspect-page {
   padding: 10px 20px;
   font-size: 12px;

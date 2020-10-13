@@ -35,7 +35,7 @@ const postRequest = (url, body) => {
         if (data.code === 200) {
           resolve(data.data)
         } else {
-          reject(new Error(data.message))
+          reject(new Error(data.msg || data.message))
         }
       }
     )
