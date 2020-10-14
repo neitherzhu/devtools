@@ -7,12 +7,12 @@
 <script>
 const path = require('path')
 const nodeRequire = global.require // 缓存原始require
-const amdLoader = require('monaco-editor/min/vs/loader.js')
+const amdLoader = require('@/monaco-editor/min/vs/loader.js')
 const amdRequire = amdLoader.require // 编辑器自定义的require
 amdLoader.nodeRequire = nodeRequire // 将编辑器的nodeRequire设置为原始的require，否则会报错，无法引入node模块
 global.require = nodeRequire
 amdRequire.config({
-  baseUrl: path.join(__dirname, '../../../../node_modules/monaco-editor/min')
+  baseUrl: path.join(__dirname, '../../monaco-editor/min')
 })
 
 export default {

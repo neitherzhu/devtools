@@ -32,7 +32,7 @@ const getters = {
 const actions = {
   create ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      const project = { id: Date.now(), ...payload }
+      const project = Object.assign({ id: Date.now() }, payload)
       projectDB.insert(project, function (err) {
         if (err) {
           return reject(err)

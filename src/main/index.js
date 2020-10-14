@@ -1,6 +1,6 @@
 'use strict'
 
-import { autoUpdater } from 'electron-updater'
+// import { autoUpdater } from 'electron-updater'
 import { app, BrowserWindow } from 'electron'
 
 /**
@@ -63,10 +63,10 @@ app.on('activate', () => {
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall()
-})
+// autoUpdater.on('update-downloaded', () => {
+//   autoUpdater.quitAndInstall()
+// })
 
-app.on('ready', () => {
-  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
-})
+// app.on('ready', () => {
+//   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
+// })

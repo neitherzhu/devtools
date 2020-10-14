@@ -25,7 +25,7 @@ let whiteListedModules = ['vue']
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    inspect: path.join(__dirname, '../src/renderer/pages/InspectPage/main.js'),
+    // inspect: path.join(__dirname, '../src/renderer/pages/InspectPage/main.js'),
     renderer: path.join(__dirname, '../src/renderer/main.js')
   },
   externals: [
@@ -36,7 +36,7 @@ let rendererConfig = {
       {
         test: /\.(js|vue)$/,
         enforce: 'pre',
-        exclude: /node_modules/,
+        exclude: /node_modules|monaco-editor/,
         use: {
           loader: 'eslint-loader',
           options: {
@@ -137,21 +137,21 @@ let rendererConfig = {
         ? path.resolve(__dirname, '../node_modules')
         : false
     }),
-    new HtmlWebpackPlugin({
-      filename: 'inspect.html',
-      title: '调试',
-      template: path.resolve(__dirname, '../src/index.ejs'),
-      chunks: ['inspect'],
-      minify: {
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        removeComments: true
-      },
-      nodeModules:
-        process.env.NODE_ENV !== 'production'
-          ? path.resolve(__dirname, '../node_modules')
-          : false
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'inspect.html',
+    //   title: '调试',
+    //   template: path.resolve(__dirname, '../src/index.ejs'),
+    //   chunks: ['inspect'],
+    //   minify: {
+    //     collapseWhitespace: true,
+    //     removeAttributeQuotes: true,
+    //     removeComments: true
+    //   },
+    //   nodeModules:
+    //     process.env.NODE_ENV !== 'production'
+    //       ? path.resolve(__dirname, '../node_modules')
+    //       : false
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new MonacoWebpackPlugin()
